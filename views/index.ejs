@@ -1,0 +1,75 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Todd Brannon</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  
+  <main>
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+          <h1>Todd Brannon</h1>
+          <p>Guitarist | Composer | Producer</p>
+          <a href="#music" class="btn btn-primary">Listen Now</a>
+        </div>
+    </section>
+    <!-- Music Section -->
+    <section id="music">
+        <h2>Music</h2>
+        <div class="tracks">
+            <% tracks.forEach(track => { %>
+                <div class="track">
+                  <h3><%= track.title %></h3>
+                  <h5>by <%= track.composer %></h5>
+                  <p><%= track.description %></p>
+
+                  <!-- Begin track content with cover art and audio player -->
+                  <div class="track-content">
+                    <img src="<%= track.coverArt %>" alt="<%= track.title %> Cover Art" class="cover-art" style="width:100px; height:100px;">
+                    <audio controls>
+                      <source src="<%= track.audioSrc %>" type="audio/mpeg">
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+                  <!-- End of track content -->
+
+                  <div class="platform-links">
+                    <% if (track.platforms.spotify) { %>
+                      <a href="<%= track.platforms.spotify %>" target="_blank">
+                        <img src="/images/icons/Music Streaming Badge SpotifyLight.png" alt="Spotify" style="width:100px; height:100px;">
+                      </a>
+                    <% } %>
+                    <% if (track.platforms.appleMusic) { %>
+                      <a href="<%= track.platforms.appleMusic %>" target="_blank">
+                        <img src="/images/icons/Music Streaming Badge AppleLight.png" alt="Apple Music" style="width:100px; height:100px;">
+                      </a>
+                    <% } %>
+                    <% if (track.platforms.soundcloud) { %>
+                      <a href="<%= track.platforms.soundcloud %>" target="_blank">
+                        <img src="/images/icons/soundcloud.png" alt="SoundCloud" style="width:100px; height:100px;">
+                      </a>
+                    <% } %>
+                    <% if (track.platforms.bandcamp) { %>
+                      <a href="<%= track.platforms.bandcamp %>" target="_blank">
+                        <img src="/images/icons/bandcamp.png" alt="Bandcamp" style="width:100px; height:100px;">
+                      </a>
+                    <% } %>
+                  </div>
+                </div>
+              <% }) %>
+              
+        </div>
+    </section>
+  
+  
+  </main>
+  
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
