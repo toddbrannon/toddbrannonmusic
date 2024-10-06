@@ -1,31 +1,279 @@
 /* styles.css */
 
-/* Reset and base styles */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  /* Global Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f7fa;
+  color: #2c3e50;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hero Section */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 123, 255, 0.9);
+  z-index: -2;
+}
+
+#hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+  opacity: 0.4;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  margin-bottom: 0.5em;
+}
+
+.hero-content p {
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+}
+
+.hero-content .btn {
+  padding: 15px 30px;
+  font-size: 1rem;
+}
+
+
+/* Music Section Styles */
+#music {
+  background-color: #f5f7fa;
+}
+
+.music-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e1e8ed;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.music-cover-art {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.music-title {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  margin-right: 180px;
+  color: #34495e;
+}
+
+.music-composer {
+  color: #7f8c8d;
+  margin-bottom: 15px;
+  margin-right: 180px;
+}
+
+.music-description {
+  margin-bottom: 20px;
+  color: #7f8c8d;
+  margin-right: 180px;
+}
+
+.track {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e1e8ed;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative; /* Necessary for absolute positioning inside */
+}
+
+.track-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e1e8ed;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.track-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.cover-art {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.tracks-list {
+  margin-top: 20px;
+}
+
+.track-title {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+
+.track-description {
+  margin-bottom: 10px;
+  color: #7f8c8d;
+}
+
+.track audio {
+  margin-bottom: 10px;
+}
+
+.track-composer {
+  color: #7f8c8d;
+  margin-bottom: 15px;
+  margin-right: 120px; /* To prevent overlap */
+}
+
+.track-content {
+  margin-bottom: 20px;
+}
+
+.cover-art:hover {
+  transform: scale(1.05);
+}
+
+.track-card audio {
+  flex: 1;
+}
+
+.platform-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.platform-links img {
+  width: 40px;
+  height: 40px;
+  transition: opacity 0.3s ease;
+}
+
+.platform-links img:hover {
+  opacity: 0.7;
+}
+
+
+/* Highlighting the Playing Element */
+.track.playing,
+.music-card.playing {
+  border-color: #ff6600;
+  box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
+}
+
+/* Optional: Remove background and borders from modal content */
+.modal-content {
+  background: none;
+  border: none;
+}
+
+/* Optional: Remove padding from modal body */
+.modal-body {
+  padding: 0;
+}
+
+/* Optional: Style the image within the modal */
+.modal img {
+  border-radius: 8px;
+}
+
+/* Optional: Add a close button overlay on the image */
+.modal .close-overlay {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+
+
+@media (max-width: 767px) {
+  #hero-video {
+    display: none;
   }
-  
-  /* Hero Section */
+
   #hero {
-    background-image: url('/images/hero-background.jpg');
+    background: url('/images/video/HeroPoster.png') no-repeat center center;
     background-size: cover;
-    background-position: center;
-    color: #fff;
-    text-align: center;
-    padding: 150px 20px;
+  }
+
+  .hero-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-content {
+    top: 40%; /* Adjust content position if needed */
+  }
+
+  .track-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .music-cover-art {
+    position: static;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
   }
   
-  .hero-content h1 {
-    font-size: 4em;
-    margin-bottom: 0.5em;
+  .music-title,
+  .music-composer,
+  .music-description {
+    margin-right: 0;
   }
-  
-  .hero-content p {
-    font-size: 1.5em;
-    margin-bottom: 1em;
+
+  .platform-links {
+    justify-content: flex-start;
   }
+}
   
   .btn {
     text-decoration: none;
@@ -39,32 +287,15 @@ body, html {
     background-color: #e65c00;
   }
 
-  /* Music Section */
-#music {
-    padding: 50px 20px;
-    background-color: #f5f5f5;
-  }
-  
-  #music h2 {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .track {
-    margin-bottom: 40px;
-  }
-  
-  .track h3 {
-    margin-bottom: 10px;
-  }
-  
-  .platform-links img {
-    width: 32px;
-    height: 32px;
-    margin-right: 10px;
-  }
-  
-  .platform-links a {
-    display: inline-block;
-  }
+  /* Footer Styles */
+#footer .container {
+  text-align: center;
+  padding: 20px 0;
+}
+
+#footer p {
+  margin: 0;
+  color: #777;
+}
+
   

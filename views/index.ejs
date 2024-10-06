@@ -4,72 +4,152 @@
 <head>
   <meta charset="UTF-8">
   <title>Todd Brannon</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- Include Custom CSS -->
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <%- include('partials/header') %>
   
   <main>
     <!-- Hero Section -->
+    <!-- Hero Section -->
     <section id="hero">
-        <div class="hero-content">
-          <h1>Todd Brannon</h1>
-          <p>Guitarist | Composer | Producer</p>
-          <a href="#music" class="btn btn-primary">Listen Now</a>
-        </div>
-    </section>
-    <!-- Music Section -->
-    <section id="music">
-        <h2>Music</h2>
-        <div class="tracks">
-            <% tracks.forEach(track => { %>
-                <div class="track">
-                  <h3><%= track.title %></h3>
-                  <h5>by <%= track.composer %></h5>
-                  <p><%= track.description %></p>
+      <!-- Video Background -->
+      <video autoplay muted loop playsinline id="hero-video" poster="/images/video/HeroPoster.png">
+        <source src="/images/video/HeroVideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
 
-                  <!-- Begin track content with cover art and audio player -->
-                  <div class="track-content">
-                    <img src="<%= track.coverArt %>" alt="<%= track.title %> Cover Art" class="cover-art" style="width:100px; height:100px;">
-                    <audio controls>
+      <!-- Overlay -->
+    <div class="hero-overlay"></div>
+    
+      <!-- Hero Content -->
+      <div class="hero-content">
+        <h1>Todd Brannon</h1>
+        <p>Guitarist | Composer | Producer</p>
+        <a href="#music" class="btn btn-primary">Listen Now</a>
+      </div>
+    </section>
+
+   <!-- Music Section -->
+  <section id="music" class="py-5">
+  <h2 class="text-center mb-5">Music</h2>
+  <div class="container">
+    <div class="music-items row gy-5">
+      <% musicItems.forEach(item => { %>
+        <div class="col-12">
+          <div class="music-card border rounded p-4 position-relative">
+            <!-- Cover Art with Modal Trigger -->
+          <a href="#" data-bs-toggle="modal" data-bs-target="#modal-<%= item.id %>">
+            <img src="<%= item.coverArt %>" alt="<%= item.title %> Cover Art" class="music-cover-art">
+          </a>
+
+
+            <!-- Music Item Information -->
+            <h3 class="music-title"><%= item.title %></h3>
+            <h5 class="music-composer">by <%= item.composer %></h5>
+            <p class="music-description"><%= item.description %></p>
+
+            <!-- Platform Links -->
+            <div class="platform-links d-flex flex-wrap mb-4">
+              <% if (item.platforms.spotify) { %>
+                <a href="<%= item.platforms.spotify %>" target="_blank" class="me-2 mb-2">
+                  <img src="/images/icons/SpotifyLight.png" alt="Spotify" class="platform-icon">
+                </a>
+              <% } %>
+              <% if (item.platforms.appleMusic) { %>
+                <a href="<%= item.platforms.appleMusic %>" target="_blank" class="me-2 mb-2">
+                  <img src="/images/icons/AppleLight.png" alt="Apple Music" class="platform-icon">
+                </a>
+              <% } %>
+              <% if (item.platforms.soundcloud) { %>
+                <a href="<%= item.platforms.soundcloud %>" target="_blank" class="me-2 mb-2">
+                  <img src="/images/icons/soundcloud.svg" alt="SoundCloud" class="platform-icon">
+                </a>
+              <% } %>
+              <% if (item.platforms.bandcamp) { %>
+                <a href="<%= item.platforms.bandcamp %>" target="_blank" class="me-2 mb-2">
+                  <img src="/images/icons/bandcamp.svg" alt="Bandcamp" class="platform-icon">
+                </a>
+              <% } %>
+            </div>
+
+            <!-- Conditional Rendering Based on Type -->
+            <% if (item.type === 'single') { %>
+              <!-- Single Track -->
+              <div class="track-content">
+                <audio controls class="w-100">
+                  <source src="<%= item.audioSrc %>" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              </div>
+              <!-- Modal for Enlarged Cover Art -->
+              <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" aria-labelledby="modalLabel-<%= item.id %>" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-body p-0">
+                      <img src="<%= item.coverArt %>" alt="<%= item.title %> Cover Art" class="img-fluid w-100">
+                      <span class="close-overlay" data-bs-dismiss="modal">&times;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <% } else if (item.type === 'album') { %>
+              <!-- Album Tracks List -->
+              <div class="tracks-list">
+                <% item.tracks.forEach((track, index) => { %>
+                  <div class="track mb-3">
+                    <h5 class="track-title">Track <%= index + 1 %>: <%= track.title %> <% if (track.duration) { %> (<%= track.duration %>) <% } %></h5>
+                    <% if (track.description) { %>
+                      <p class="track-description"><%= track.description %></p>
+                    <% } %>
+                    <audio controls class="w-100">
                       <source src="<%= track.audioSrc %>" type="audio/mpeg">
                       Your browser does not support the audio element.
                     </audio>
                   </div>
-                  <!-- End of track content -->
-
-                  <div class="platform-links">
-                    <% if (track.platforms.spotify) { %>
-                      <a href="<%= track.platforms.spotify %>" target="_blank">
-                        <img src="/images/icons/Music Streaming Badge SpotifyLight.png" alt="Spotify" style="width:100px; height:100px;">
-                      </a>
-                    <% } %>
-                    <% if (track.platforms.appleMusic) { %>
-                      <a href="<%= track.platforms.appleMusic %>" target="_blank">
-                        <img src="/images/icons/Music Streaming Badge AppleLight.png" alt="Apple Music" style="width:100px; height:100px;">
-                      </a>
-                    <% } %>
-                    <% if (track.platforms.soundcloud) { %>
-                      <a href="<%= track.platforms.soundcloud %>" target="_blank">
-                        <img src="/images/icons/soundcloud.png" alt="SoundCloud" style="width:100px; height:100px;">
-                      </a>
-                    <% } %>
-                    <% if (track.platforms.bandcamp) { %>
-                      <a href="<%= track.platforms.bandcamp %>" target="_blank">
-                        <img src="/images/icons/bandcamp.png" alt="Bandcamp" style="width:100px; height:100px;">
-                      </a>
-                    <% } %>
+                <% }) %>
+              </div>
+              <!-- Modal for Enlarged Album Cover Art -->
+              <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" aria-labelledby="modalLabel-<%= item.id %>" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-body p-0">
+                      <img src="<%= item.coverArt %>" alt="<%= item.title %> Cover Art" class="img-fluid w-100">
+                      <span class="close-overlay" data-bs-dismiss="modal">&times;</span>
+                    </div>
                   </div>
                 </div>
-              <% }) %>
-              
+              </div>
+
+            <% } %>
+          </div>
         </div>
-    </section>
+      <% }) %>
+    </div>
+  </div>
+  </section>
+
+
+
   
   
   </main>
   
   <%- include('partials/footer') %>
   <script src="/js/main.js"></script>
+  <!-- Include Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/audio-control.js"></script>
+  <!-- Include Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
