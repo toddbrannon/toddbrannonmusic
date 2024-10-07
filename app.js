@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const data = require('./data'); // Import the data file
 
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
@@ -177,7 +178,7 @@ app.use(express.static(path.join(__dirname, 'public')));
       // Add more items as needed
     ];
   
-    res.render('index', { musicItems });
+    res.render('index', { data });
   });
   
 
