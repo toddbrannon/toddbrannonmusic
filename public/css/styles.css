@@ -74,7 +74,7 @@ body {
 
 .music-card {
   background-color: #fff;
-  border-radius: 0px;
+  border-radius: 8px;
   padding: 20px;
   border: 1px solid #e1e8ed;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -239,8 +239,14 @@ body {
 
 
 @media (max-width: 767px) {
+
+
   #hero-video {
-    display: none;
+    /* Adjust the video styling if necessary */
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
   }
 
   #hero {
