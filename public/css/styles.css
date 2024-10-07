@@ -74,7 +74,7 @@ body {
 
 .music-card {
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 0px;
   padding: 20px;
   border: 1px solid #e1e8ed;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -85,7 +85,7 @@ body {
   width: 150px;
   height: 150px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 0px;
   position: absolute;
   top: 20px;
   right: 20px;
@@ -219,7 +219,7 @@ body {
 
 /* Optional: Style the image within the modal */
 .modal img {
-  border-radius: 8px;
+  border-radius: 0px;
 }
 
 /* Optional: Add a close button overlay on the image */
@@ -233,6 +233,10 @@ body {
   cursor: pointer;
 }
 
+.bandcamp-icon {
+  border-radius: 8px; /* Adjust the value as needed */
+}
+
 
 @media (max-width: 767px) {
   #hero-video {
@@ -240,7 +244,7 @@ body {
   }
 
   #hero {
-    background: url('/images/video/HeroPoster.png') no-repeat center center;
+    background: url('/images/video/HeroVideo.mp4') no-repeat center center;
     background-size: cover;
   }
 
@@ -252,16 +256,22 @@ body {
     top: 40%; /* Adjust content position if needed */
   }
 
+  /* Increase button size */
+  .hero-content .btn {
+    padding: 15px 25px;
+    font-size: 1rem!important;
+  }
+
   .hero-content h1 {
-    font-size: 3rem; /* Reduce h1 size slightly for mobile */
+    font-size: 2rem; /* Reduce h1 size slightly for mobile */
   }
 
   .hero-content p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .track-title {
-    font-size: 1.4rem; /* Previously 1.2rem or 1.5rem */
+    font-size: 1.0rem; /* Previously 1.2rem or 1.5rem */
   }
 
   .track-composer {
@@ -282,15 +292,15 @@ body {
   }
 
   .album-title {
-    font-size: 1.6rem;
-  }
-
-  .album-composer {
     font-size: 1.2rem;
   }
 
+  .album-composer {
+    font-size: 1.3rem;
+  }
+
   .album-description {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   /* Center and enlarge album covers on mobile */
@@ -312,20 +322,32 @@ body {
   }
 
   .platform-links {
-    justify-content: flex-start;
-  }
-
-  /* Increase button size */
-  .btn {
-    padding: 15px 25px;
-    font-size: 1rem;
-  }
-
-  audio {
-    transform: scale(1.2);
-    transform-origin: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Adjust spacing as needed */
+    margin-bottom: 1rem; /* Equivalent to mb-4 */
   }
   
+  .platform-links a {
+    /* Remove default margins if any */
+    margin: 0;
+  }
+
+  .platform-links img {
+    /* Remove default margins if any */
+    width: 60px;
+    height: 60px;
+  }
+  
+
+  audio {
+    transform: scale(1.0);
+    transform-origin: center;
+    display: block;
+    margin: 0 auto;
+  }
+
 }
 
   .btn {

@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 </head>
 <body>
@@ -44,7 +46,7 @@
     <div class="music-items row gy-5">
       <% musicItems.forEach(item => { %>
         <div class="col-12">
-          <div class="music-card border rounded p-4 position-relative">
+          <div class="music-card p-4 position-relative">
             <!-- Cover Art with Modal Trigger -->
           <a href="#" data-bs-toggle="modal" data-bs-target="#modal-<%= item.id %>">
             <img src="<%= item.coverArt %>" alt="<%= item.title %> Cover Art" class="music-cover-art">
@@ -57,28 +59,29 @@
             <p class="music-description"><%= item.description %></p>
 
             <!-- Platform Links -->
-            <div class="platform-links d-flex flex-wrap mb-4">
+            <div class="platform-links d-flex flex-wrap justify-content-center justify-content-md-start gap-2 mb-4">
               <% if (item.platforms.spotify) { %>
-                <a href="<%= item.platforms.spotify %>" target="_blank" class="me-2 mb-2">
-                  <img src="/images/icons/SpotifyLight.png" alt="Spotify" class="platform-icon">
+                <a href="<%= item.platforms.spotify %>" target="_blank">
+                  <img src="/images/icons/spotify-square-color-icon.svg" alt="Spotify" class="platform-icon">
                 </a>
               <% } %>
               <% if (item.platforms.appleMusic) { %>
-                <a href="<%= item.platforms.appleMusic %>" target="_blank" class="me-2 mb-2">
-                  <img src="/images/icons/AppleLight.png" alt="Apple Music" class="platform-icon">
+                <a href="<%= item.platforms.appleMusic %>" target="_blank">
+                  <img src="/images/icons/apple-music-icon.svg" alt="Apple Music" class="platform-icon">
                 </a>
               <% } %>
               <% if (item.platforms.soundcloud) { %>
-                <a href="<%= item.platforms.soundcloud %>" target="_blank" class="me-2 mb-2">
-                  <img src="/images/icons/soundcloud.svg" alt="SoundCloud" class="platform-icon">
+                <a href="<%= item.platforms.soundcloud %>" target="_blank">
+                  <img src="/images/icons/soundcloud-square-black-icon.svg" alt="SoundCloud" class="platform-icon">
                 </a>
               <% } %>
               <% if (item.platforms.bandcamp) { %>
-                <a href="<%= item.platforms.bandcamp %>" target="_blank" class="me-2 mb-2">
-                  <img src="/images/icons/bandcamp.svg" alt="Bandcamp" class="platform-icon">
+                <a href="<%= item.platforms.bandcamp %>" target="_blank">
+                  <img src="/images/icons/bandcamp-button-square-aqua-64.png" alt="Bandcamp" class="platform-icon bandcamp-icon">
                 </a>
-              <% } %>
+              <% } %>              
             </div>
+
 
             <!-- Conditional Rendering Based on Type -->
             <% if (item.type === 'single') { %>
