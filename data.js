@@ -3,8 +3,8 @@
 const data = {
     siteTitle: 'Todd Brannon Music',
     hero: {
-      title: 'Todd Q Brannon',
-      subtitle: 'Guitarist | Composer | Producer',
+      title: 'Todd Brannon',
+      subtitle: 'Six strings, a studio, and a mind for music',
       buttonText: 'Listen Now',
       buttonLink: '#music',
       videoSrc: '/images/video/HeroVideo.mp4',
@@ -57,89 +57,6 @@ const data = {
             //   bandcamp: 'https://soundcloud.com/...'
             }
           },
-        // Album Example
-        {
-          id: 'album1',
-          type: 'album',
-          title: 'Aural Archives I',
-          composer: 'Todd Brannon',
-          description: 'A collection of guitar driven alternative and rock beats',
-          coverArt: '/images/cover_art/Aural Archives I.png',
-          platforms: {
-            spotify: '',
-            appleMusic: '',
-            soundcloud: '',
-            bandcamp: ''
-          },
-          tracks: [
-            {
-              title: 'High Tide',
-              audioSrc: '/audio/AuralArchivesI/High Tide.mp3',
-              // description: 'Description of Track 1',
-              // duration: '3:45'
-            },
-            {
-              title: 'Power Play',
-              audioSrc: '/audio/AuralArchivesI/Power Play.m4a',
-              // description: 'Description of Track 2',
-              // duration: '4:20'
-            },
-            {
-              title: 'September Shade',
-              audioSrc: '/audio/AuralArchivesI/September Shade.m4a',
-              // description: 'Description of Track 2',
-              // duration: '4:20'
-            },
-            {
-              title: 'Voices',
-              audioSrc: '/audio/AuralArchivesI/Voices.mp3',
-              // description: 'Description of Track 2',
-              // duration: '4:20'
-            },
-            // Add more tracks as needed
-          ]
-        },
-        {
-          id: 'album2',
-          type: 'album',
-          title: 'Aural Archives II',
-          composer: 'Todd Brannon',
-          description: 'A collection of guitar driven alternative and rock beats',
-          coverArt: '/images/cover_art/Aural Archives II.png',
-          platforms: {
-            spotify: '',
-            appleMusic: '',
-            soundcloud: '',
-            bandcamp: ''
-          },
-          tracks: [
-            {
-              title: 'Awake',
-              audioSrc: '/audio/AuralArchivesII/Awake_Master.mp3',
-              // description: 'Description of Track 1',
-              // duration: '3:45'
-            },
-            {
-              title: 'Destination',
-              audioSrc: '/audio/AuralArchivesII/Destination.m4a',
-              // description: 'Description of Track 2',
-              // duration: '4:20'
-            },
-            {
-              title: 'Ignition',
-              audioSrc: '/audio/AuralArchivesII/Ignition.m4a',
-              // description: 'Description of Track 2',
-              // duration: '4:20'
-            },
-            {
-              title: 'Long Stretch',
-              audioSrc: '/audio/AuralArchivesII/Long Stretch Master.mp3',
-              // description: 'Description of Track 2',
-              // duration: '4:20'
-            },
-            // Add more tracks as needed
-          ]
-        },
         {
           id: 'album3',
           type: 'album',
@@ -181,6 +98,91 @@ const data = {
             {
               title: 'Pave the Way',
               audioSrc: '/audio/AuralArchivesIII/Pave the Way.m4a',
+              // description: 'Description of Track 2',
+              // duration: '4:20'
+            },
+            // Add more tracks as needed
+          ]
+        },
+        
+        {
+          id: 'album2',
+          type: 'album',
+          title: 'Aural Archives II',
+          composer: 'Todd Brannon',
+          description: 'A collection of guitar driven alternative and rock beats',
+          coverArt: '/images/cover_art/Aural Archives II.png',
+          platforms: {
+            spotify: '',
+            appleMusic: '',
+            soundcloud: '',
+            bandcamp: ''
+          },
+          tracks: [
+            {
+              title: 'Awake',
+              audioSrc: '/audio/AuralArchivesII/Awake_Master.mp3',
+              // description: 'Description of Track 1',
+              // duration: '3:45'
+            },
+            {
+              title: 'Destination',
+              audioSrc: '/audio/AuralArchivesII/Destination.m4a',
+              // description: 'Description of Track 2',
+              // duration: '4:20'
+            },
+            {
+              title: 'Ignition',
+              audioSrc: '/audio/AuralArchivesII/Ignition.m4a',
+              // description: 'Description of Track 2',
+              // duration: '4:20'
+            },
+            {
+              title: 'Long Stretch',
+              audioSrc: '/audio/AuralArchivesII/Long Stretch Master.mp3',
+              // description: 'Description of Track 2',
+              // duration: '4:20'
+            },
+            // Add more tracks as needed
+          ]
+        },
+        
+        // Album Example
+        {
+          id: 'album1',
+          type: 'album',
+          title: 'Aural Archives I',
+          composer: 'Todd Brannon',
+          description: 'A collection of guitar driven alternative and rock beats',
+          coverArt: '/images/cover_art/Aural Archives I.png',
+          platforms: {
+            spotify: '',
+            appleMusic: '',
+            soundcloud: '',
+            bandcamp: ''
+          },
+          tracks: [
+            {
+              title: 'High Tide',
+              audioSrc: '/audio/AuralArchivesI/High Tide.mp3',
+              // description: 'Description of Track 1',
+              // duration: '3:45'
+            },
+            {
+              title: 'Power Play',
+              audioSrc: '/audio/AuralArchivesI/Power Play.m4a',
+              // description: 'Description of Track 2',
+              // duration: '4:20'
+            },
+            {
+              title: 'September Shade',
+              audioSrc: '/audio/AuralArchivesI/September Shade.m4a',
+              // description: 'Description of Track 2',
+              // duration: '4:20'
+            },
+            {
+              title: 'Voices',
+              audioSrc: '/audio/AuralArchivesI/Voices.mp3',
               // description: 'Description of Track 2',
               // duration: '4:20'
             },
