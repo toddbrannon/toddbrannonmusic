@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
     const musicItems = [
       // Single Track Example
       {
-        id: 'single1',
+        id: 'single0',
         type: 'single',
         title: 'Emerald (demo)',
         composer: 'hiautmski (Todd Brannon)',
