@@ -1,37 +1,27 @@
-<!-- views/index.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Todd Brannon</title>
-  <!-- Include Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <!-- Include Custom CSS -->
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 </head>
 <body>
   <%- include('partials/header') %>
   
   <main>
-    <!-- Hero Section -->
-    <!-- Hero Section -->
     <section id="hero">
-      <!-- Video Background -->
       <video autoplay muted loop playsinline id="hero-video" poster="/images/video/HeroPoster.png">
         <source src="/images/video/HeroVideo.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
 
-      <!-- Overlay -->
-    <div class="hero-overlay"></div>
+      <div class="hero-overlay"></div>
     
-      <!-- Hero Content -->
       <div class="hero-content">
         <h1>Todd Brannon</h1>
         <p>Guitarist | Composer | Producer</p>
@@ -39,120 +29,185 @@
       </div>
     </section>
 
-   <!-- Music Section -->
-  <section id="music" class="py-5">
-  <h2 class="text-center mb-5">Music</h2>
-  <div class="container">
-    <div class="music-items row gy-5">
-      <% musicItems.forEach(item => { %>
-        <div class="col-12">
-          <div class="music-card p-4 position-relative">
-            <!-- Cover Art with Modal Trigger -->
-          <a href="#" data-bs-toggle="modal" data-bs-target="#modal-<%= item.id %>">
-            <img src="<%= item.coverArt %>" alt="<%= item.title %> Cover Art" class="music-cover-art">
-          </a>
-
-
-            <!-- Music Item Information -->
-            <h3 class="music-title"><%= item.title %></h3>
-            <h5 class="music-composer">by <%= item.composer %></h5>
-            <p class="music-description"><%= item.description %></p>
-
-            <!-- Platform Links -->
-            <div class="platform-links d-flex flex-wrap justify-content-center justify-content-md-start gap-2 mb-4">
-              <% if (item.platforms.spotify) { %>
-                <a href="<%= item.platforms.spotify %>" target="_blank">
-                  <img src="/images/icons/spotify-square-color-icon.svg" alt="Spotify" class="platform-icon">
-                </a>
-              <% } %>
-              <% if (item.platforms.appleMusic) { %>
-                <a href="<%= item.platforms.appleMusic %>" target="_blank">
-                  <img src="/images/icons/apple-music-icon.svg" alt="Apple Music" class="platform-icon">
-                </a>
-              <% } %>
-              <% if (item.platforms.soundcloud) { %>
-                <a href="<%= item.platforms.soundcloud %>" target="_blank">
-                  <img src="/images/icons/soundcloud-square-black-icon.svg" alt="SoundCloud" class="platform-icon">
-                </a>
-              <% } %>
-              <% if (item.platforms.bandcamp) { %>
-                <a href="<%= item.platforms.bandcamp %>" target="_blank">
-                  <img src="/images/icons/bandcamp-button-square-aqua-64.png" alt="Bandcamp" class="platform-icon bandcamp-icon">
-                </a>
-              <% } %>              
-            </div>
-
-
-            <!-- Conditional Rendering Based on Type -->
-            <% if (item.type === 'single') { %>
-              <!-- Single Track -->
-              <div class="track-content">
-                <audio controls class="w-100">
-                  <source src="<%= item.audioSrc %>" type="audio/mpeg">
-                  Your browser does not support the audio element.
-                </audio>
-              </div>
-              <!-- Modal for Enlarged Cover Art -->
-              <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" aria-labelledby="modalLabel-<%= item.id %>" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-body p-0">
-                      <img src="<%= item.coverArt %>" alt="<%= item.title %> Cover Art" class="img-fluid w-100">
-                      <span class="close-overlay" data-bs-dismiss="modal">&times;</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            <% } else if (item.type === 'album') { %>
-              <!-- Album Tracks List -->
-              <div class="tracks-list">
-                <% item.tracks.forEach((track, index) => { %>
-                  <div class="track mb-3">
-                    <h5 class="track-title">Track <%= index + 1 %>: <%= track.title %> <% if (track.duration) { %> (<%= track.duration %>) <% } %></h5>
-                    <% if (track.description) { %>
-                      <p class="track-description"><%= track.description %></p>
+    <section id="music" class="py-5">
+      <h2 class="text-center mb-5">Music</h2>
+      <div class="container">
+        <div class="music-items row gy-5">
+          <% musicItems.forEach(item => { %>
+            <div class="col-12">
+              <div class="music-card p-4 position-relative">
+                <div class="cover-art-container d-flex justify-content-center justify-content-md-start">
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#modal-<%= item.id %>">
+                    <% if (item.coverArt.endsWith('.mp4') || item.coverArt.endsWith('.mov')) { %>
+                      <video class="music-cover-art" autoplay muted loop playsinline poster="/images/default-poster.png">
+                        <source src="<%= item.coverArt %>" type="video/mp4">
+                        Your browser does not support the video tag.
+                      </video>
+                    <% } else { %>
+                      <img src="<%= item.coverArt %>" alt="<%= item.title %> Cover Art" class="music-cover-art">
                     <% } %>
+                  </a>
+                </div>
+
+                <h3 class="music-title"><%= item.title %></h3>
+                <h5 class="music-composer">by <%= item.composer %></h5>
+                <p class="music-description"><%= item.description %></p>
+
+                <div class="platform-links d-flex flex-wrap justify-content-center justify-content-md-start gap-2 mb-4">
+                  <% if (item.platforms.spotify) { %>
+                    <a href="<%= item.platforms.spotify %>" target="_blank">
+                      <img src="/images/icons/spotify-square-color-icon.svg" alt="Spotify" class="platform-icon">
+                    </a>
+                  <% } %>
+                  <% if (item.platforms.appleMusic) { %>
+                    <a href="<%= item.platforms.appleMusic %>" target="_blank">
+                      <img src="/images/icons/apple-music-icon.svg" alt="Apple Music" class="platform-icon">
+                    </a>
+                  <% } %>
+                  <% if (item.platforms.soundcloud) { %>
+                    <a href="<%= item.platforms.soundcloud %>" target="_blank">
+                      <img src="/images/icons/soundcloud-square-black-icon.svg" alt="SoundCloud" class="platform-icon">
+                    </a>
+                  <% } %>
+                  <% if (item.platforms.bandcamp) { %>
+                    <a href="<%= item.platforms.bandcamp %>" target="_blank">
+                      <img src="/images/icons/bandcamp-button-square-aqua-64.png" alt="Bandcamp" class="platform-icon bandcamp-icon">
+                    </a>
+                  <% } %>              
+                </div>
+
+                <% if (item.type === 'single') { %>
+                  <div class="track-content" id="<%= item.id %>">
                     <audio controls class="w-100">
-                      <source src="<%= track.audioSrc %>" type="audio/mpeg">
+                      <source src="<%= item.audioSrc %>" type="audio/mpeg">
                       Your browser does not support the audio element.
                     </audio>
+                    <!-- For single tracks -->
+                    <div class="share-container d-flex justify-content-end align-items-center">
+                      <span class="share-text me-2">Share this track:</span>
+                      <button class="share-btn" onclick="copyTrackLink('<%= item.id %>')">
+                        <img src="/images/icons/share_arrow.svg" alt="Share" class="share-icon">
+                      </button>
+                    </div>
+                    
+                    <!-- Share Modal -->
+                    <div class="modal fade" id="shareModal-<%= item.id %>" tabindex="-1" aria-labelledby="shareModalLabel-<%= item.id %>" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="shareModalLabel-<%= item.id %>">Share Track</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="d-flex flex-column gap-3">
+                              <button class="btn btn-light share-option" onclick="shareTrack('facebook', '<%= item.title %>', '<%= item.composer %>', '<%= item.audioSrc %>')">
+                                Share on Facebook
+                              </button>
+                              <button class="btn btn-light share-option" onclick="shareTrack('instagram', '<%= item.title %>', '<%= item.composer %>', '<%= item.audioSrc %>')">
+                                Share on Instagram
+                              </button>
+                              <button class="btn btn-light share-option" onclick="shareTrack('x', '<%= item.title %>', '<%= item.composer %>', '<%= item.audioSrc %>')">
+                                Share on X
+                              </button>
+                              <button class="btn btn-light share-option" onclick="shareTrack('tiktok', '<%= item.title %>', '<%= item.composer %>', '<%= item.audioSrc %>')">
+                                Share on TikTok
+                              </button>
+                              <button class="btn btn-light share-option" onclick="copyTrackLink('<%= item.title %>', '<%= item.composer %>', '<%= item.audioSrc %>')">
+                                Copy Link
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
                   </div>
-                <% }) %>
-              </div>
-              <!-- Modal for Enlarged Album Cover Art -->
-              <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" aria-labelledby="modalLabel-<%= item.id %>" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-body p-0">
-                      <img src="<%= item.coverArt %>" alt="<%= item.title %> Cover Art" class="img-fluid w-100">
-                      <span class="close-overlay" data-bs-dismiss="modal">&times;</span>
+                <% } else if (item.type === 'album') { %>
+                  <div class="tracks-list">
+                    <% item.tracks.forEach((track, index) => { %>
+                      <div class="track mb-3" id="<%= track.id %>-track-<%= index %>">
+                        <h5 class="track-title">Track <%= index + 1 %>: <%= track.title %> <% if (track.duration) { %> (<%= track.duration %>) <% } %></h5>
+                        <% if (track.description) { %>
+                          <p class="track-description"><%= track.description %></p>
+                        <% } %>
+                        <audio controls class="w-100">
+                          <source src="<%= track.audioSrc %>" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                        </audio>
+
+                        <!-- For album tracks -->
+                        <div class="share-container d-flex justify-content-end align-items-center">
+                          <span class="share-text me-2">Share this track:</span>
+                          <button class="share-btn" onclick="copyTrackLink('<%= item.id %>-track-<%= index %>')">
+                            <img src="/images/icons/share_arrow.svg" alt="Share" class="share-icon">
+                          </button>
+                        </div>
+                        
+                        <!-- Share Modal -->
+                        <div class="modal fade" id="shareModal-<%= track.id %>" tabindex="-1" aria-labelledby="shareModalLabel-<%= track.id %>" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="shareModalLabel-<%= track.id %>">Share Track</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="d-flex flex-column gap-3">
+                                  <button class="btn btn-light share-option" onclick="shareTrack('facebook', '<%= track.title %>', '<%= item.composer %>', '<%= track.audioSrc %>')">
+                                    Share on Facebook
+                                  </button>
+                                  <button class="btn btn-light share-option" onclick="shareTrack('instagram', '<%= track.title %>', '<%= item.composer %>', '<%= track.audioSrc %>')">
+                                    Share on Instagram
+                                  </button>
+                                  <button class="btn btn-light share-option" onclick="shareTrack('x', '<%= track.title %>', '<%= item.composer %>', '<%= track.audioSrc %>')">
+                                    Share on X
+                                  </button>
+                                  <button class="btn btn-light share-option" onclick="shareTrack('tiktok', '<%= track.title %>', '<%= item.composer %>', '<%= track.audioSrc %>')">
+                                    Share on TikTok
+                                  </button>
+                                  <button class="btn btn-light share-option" onclick="copyTrackLink('<%= track.title %>', '<%= item.composer %>', '<%= track.audioSrc %>')">
+                                    Copy Link
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    <% }) %>
+                  </div>
+                <% } %>
+
+                <!-- Modal for Cover Art -->
+                <div class="modal fade" id="modal-<%= item.id %>" tabindex="-1" aria-labelledby="modalLabel-<%= item.id %>" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body p-0">
+                        <% if (item.coverArt.endsWith('.mp4') || item.coverArt.endsWith('.mov')) { %>
+                          <video class="img-fluid w-100" autoplay muted loop playsinline>
+                            <source src="<%= item.coverArt %>" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                        <% } else { %>
+                          <img src="<%= item.coverArt %>" alt="<%= item.title %> Cover Art" class="img-fluid w-100">
+                        <% } %>
+                        <span class="close-overlay" data-bs-dismiss="modal">&times;</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-            <% } %>
-          </div>
+            </div>
+          <% }) %>
         </div>
-      <% }) %>
-    </div>
-  </div>
-  </section>
-
-
-
-  
-  
+      </div>
+    </section>
   </main>
   
   <%- include('partials/footer') %>
   <script src="/js/main.js"></script>
-  <!-- Include Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/js/audio-control.js"></script>
-  <!-- Include Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

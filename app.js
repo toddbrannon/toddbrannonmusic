@@ -8,6 +8,18 @@ app.set('view engine', 'ejs');
 // Set static folder for assets like CSS, images, etc.
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Adding mime types to support video files
+app.use(express.static('public', {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.mp4')) {
+      res.setHeader('Content-Type', 'video/mp4');
+    }
+    if (path.endsWith('.mov')) {
+      res.setHeader('Content-Type', 'video/quicktime');
+    }
+  }
+}));
+
 
 // Routes
 
@@ -191,6 +203,8 @@ app.use(express.static(path.join(__dirname, 'public')));
   
     res.render('index', { musicItems });
   });
+
+
   
 
 // Start the server
