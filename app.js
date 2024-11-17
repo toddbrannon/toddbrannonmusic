@@ -17,6 +17,18 @@ app.use(express.static(path.join(__dirname, 'public')));
       {
         id: 'single1',
         type: 'single',
+        title: 'Emerald (demo)',
+        composer: 'hiautmski (Todd Brannon)',
+        description: 'Original ambient instrumental guitar',
+        audioSrc: '/audio/Emerald/Emerald_ruff1.wav',
+        coverArt: '/images/cover_art/hiautmski_emerald_cover.mp4',
+        platforms: {
+          
+        }
+      },
+      {
+        id: 'single1',
+        type: 'single',
         title: '26',
         composer: 'hiautmski (Todd Brannon)',
         description: 'Original ambient instrumental guitar',
